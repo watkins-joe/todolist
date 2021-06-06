@@ -19,31 +19,41 @@ app.get("/", function (req, res) {
   res.render("list", { listTitle: day, newListItems: items });
 });
 
+// app.post("/", function (req, res) {
+//   const item = req.body.newItem;
+
+//   if (req.body.list === "Work List") {
+//     workItems.push(item);
+//     res.redirect("/work");
+//   } else {
+//     items.push(item);
+//     res.redirect("/");
+//   }
+// });
+
 app.post("/", function (req, res) {
   const item = req.body.newItem;
 
-  if (req.body.list === "Work List") {
-    workItems.push(item);
-    res.redirect("/work");
-  } else {
-    items.push(item);
-    res.redirect("/");
-  }
+  items.push(item);
+  res.redirect("/");
 });
 
-app.get("/work", function (req, res) {
-  res.render("list", { listTitle: "Work List", newListItems: workItems });
-});
+// rewrote app.post with only root directory and only pushing new items to root directory
+// assuming /work doesn't exist, as
 
-app.post("/work", function (req, res) {
-  let item = req.body.newItem;
-  workItems.push(item);
-  req.redirect("/work");
-});
+// app.get("/work", function (req, res) {
+//   res.render("list", { listTitle: "Work List", newListItems: workItems });
+// });
 
-app.get("/about", function (req, res) {
-  res.render("about");
-});
+// app.post("/work", function (req, res) {
+//   let item = req.body.newItem;
+//   workItems.push(item);
+//   req.redirect("/work");
+// });
+
+// app.get("/about", function (req, res) {
+//   res.render("about");
+// });
 
 // let port = process.env.PORT;
 // if (port == null || port == "") {
